@@ -17,9 +17,8 @@ public class DensityActivity extends BaseActivity {
         DEMO.setTitle("density");
         StringBuilder sb = new StringBuilder();
         sb.append("这是一个用java代码写dip的实例,如果不想在xml里写dip,但又要实现动态适配的效果可以用这个方法:\n");
-        sb.append("\tDisplayMetrics outMetrics=new DisplayMetrics();\n");
-        sb.append("\tgetWindowManager().getDefaultDisplay().getMetrics(outMetrics);\n");
-        sb.append("\t那么10dip=10* outMetrics.density;\n");
+        sb.append("\tDisplayMetrics outMetrics = getResources().getDisplayMetrics();\n");
+        sb.append("\t那么100dip=100* outMetrics.density;\n");
         DEMO.setDescription(sb.toString());
 
     }
@@ -31,13 +30,13 @@ public class DensityActivity extends BaseActivity {
         TextView textView = (TextView) findViewById(R.id.text);
         textView.setText(DEMO.getDescription());
         TextView textView2 = (TextView) findViewById(R.id.text2);
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
+        DisplayMetrics outMetrics = getResources().getDisplayMetrics();
         int height = (int) (outMetrics.density * 100);
-
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 height);
         textView2.setLayoutParams(lp);
+        TextView textView4 = (TextView) findViewById(R.id.text4);
+        textView4.setTextSize(25);
 
     }
 }

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center" >
+    android:gravity="center"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/text"
@@ -19,13 +19,32 @@
         android:background="#ff00ff00"
         android:text="100dip" >
     </TextView>
-     <TextView
-         android:layout_marginTop="10dip"
+
+    <TextView
         android:id="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="100px"
+        android:layout_marginTop="10dip"
         android:background="#ff00ff00"
         android:text="100px" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff00ffff"
+        android:text="25sp (xml)"
+        android:textSize="25sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:background="#ff00ffff"
+        android:text="25sp (java)" >
     </TextView>
 
 </LinearLayout>
