@@ -26,6 +26,14 @@
             android:name=".DensityActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".TestSurfaceViewActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".FragmentTestActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
