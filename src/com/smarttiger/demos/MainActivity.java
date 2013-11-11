@@ -32,6 +32,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(DrawableSizeActivity.DEMO);
         demos.add(DefaultOpenActivity.DEMO);
         demos.add(FocusWeixinActivity.DEMO);
+        demos.add(TestSurfaceViewActivity.DEMO);
+        demos.add(FragmentTestActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
@@ -75,9 +77,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    	
         Demo demo = demos.get(position);
-
         Intent intent = new Intent(MainActivity.this, demo.getClassName());
         startActivity(intent);
     }

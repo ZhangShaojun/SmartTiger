@@ -19,7 +19,7 @@ public class FocusWeixinActivity extends BaseActivity {
         DEMO.setDescription(sb.toString());
 
     }
-    Context mContext;
+    Context mContext;   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
