@@ -26,6 +26,18 @@
             android:name=".DensityActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".DrawableSizeActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".DefaultOpenActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".FocusWeixinActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

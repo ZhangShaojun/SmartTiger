@@ -21,7 +21,7 @@ public class DensityActivity extends BaseActivity {
         sb.append("\t那么100dip=100* outMetrics.density;\n");
         DEMO.setDescription(sb.toString());
 
-    }
+    }   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

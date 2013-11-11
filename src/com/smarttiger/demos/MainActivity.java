@@ -29,6 +29,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
         setContentView(R.layout.main);
         mListView = (ListView) findViewById(R.id.list);
         demos.add(DensityActivity.DEMO);
+        demos.add(DrawableSizeActivity.DEMO);
+        demos.add(DefaultOpenActivity.DEMO);
+        demos.add(FocusWeixinActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
