@@ -42,6 +42,10 @@
             android:name=".FragmentTestActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".SquenceInfoBarActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

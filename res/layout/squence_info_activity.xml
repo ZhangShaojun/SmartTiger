@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/info_bar_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/add_nomal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加普通并显示" >
+        </Button>
+
+        <Button
+            android:id="@+id/add_super"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加特殊并显示" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/add_nomal_not_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加普通" >
+        </Button>
+
+        <Button
+            android:id="@+id/add_super_not_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加特殊" >
+        </Button>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示最顶层的一个" >
+    </Button>
+
+    <Button
+        android:id="@+id/random_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多纯种随机添加" >
+    </Button>
+
+</LinearLayout>

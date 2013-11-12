@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(FocusWeixinActivity.DEMO);
         demos.add(TestSurfaceViewActivity.DEMO);
         demos.add(FragmentTestActivity.DEMO);
+        demos.add(SquenceInfoBarActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
