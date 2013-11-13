@@ -59,10 +59,15 @@ public class InfoBarManager {
                             LOGManager.d("InfoBarManager.newThread waited");
                             lock.wait();
                             LOGManager.d("InfoBarManager.newThread waked!");
-                            if (currentInfoBar != null) {
-                                Thread.sleep(1000);
-                            }
 
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                    if (currentInfoBar != null) {
+                        try {
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
