@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(TestSurfaceViewActivity.DEMO);
         demos.add(FragmentTestActivity.DEMO);
         demos.add(SquenceInfoBarActivity.DEMO);
+        demos.add(TypeListViewActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
