@@ -28,16 +28,19 @@ public class TypeListViewActivity extends BaseActivity {
     }
 
     ListView list;
-    List<String> strs;
+    List<Item> strs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.type_list_view_activity);
-        strs = new ArrayList<String>();
+        strs = new ArrayList<Item>();
         for (int i = 0; i < 100; i++)
         {
-            strs.add(String.valueOf(i));
+            Item item=new Item();
+            item.type=(int) (Math.random()*5);
+            item.value=String.valueOf(i);
+            strs.add(item);
         }
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(new MyAdapter());
@@ -69,17 +72,17 @@ public class TypeListViewActivity extends BaseActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             // TODO Auto-generated method stub
-            String item = strs.get(position);
+            Item item = strs.get(position);
             if (convertView == null) {
                 switch (getItemViewType(position)) {
                     case 0:
                         TextView t = new TextView(parent.getContext());
-                        t.setText(item);
+                        t.setText(item.value);
                         convertView = t;
                         break;
                     case 1:
                         Button b = new Button(parent.getContext());
-                        b.setText(item);
+                        b.setText(item.value);
                         convertView = b;
                         break;
                     case 2:
@@ -89,13 +92,13 @@ public class TypeListViewActivity extends BaseActivity {
                         break;
                     case 3:
                         TextView t1 = new TextView(parent.getContext());
-                        t1.setText(item);
+                        t1.setText(item.value);
                         t1.setTextColor(Color.RED);
                         convertView = t1;
                         break;
                     case 4:
                         Button b1 = new Button(parent.getContext());
-                        b1.setText(item);
+                        b1.setText(item.value);
                         b1.setBackgroundColor(Color.YELLOW);
                         convertView = b1;
                         break;
@@ -106,25 +109,25 @@ public class TypeListViewActivity extends BaseActivity {
 
                 switch (getItemViewType(position)) {
                     case 0:
-                        TextView t = (TextView)convertView;
-                        t.setText(item);
+                        TextView t = (TextView) convertView;
+                        t.setText(item.value);
                         break;
                     case 1:
-                        Button b = (Button)convertView;
-                        b.setText(item);
+                        Button b = (Button) convertView;
+                        b.setText(item.value);
                         break;
                     case 2:
-                        ImageView img = (ImageView)convertView;
+                        ImageView img = (ImageView) convertView;
                         img.setImageResource(R.drawable.ic_launcher);
                         break;
                     case 3:
-                        TextView t1 = (TextView)convertView;
-                        t1.setText(item);
+                        TextView t1 = (TextView) convertView;
+                        t1.setText(item.value);
                         t1.setTextColor(Color.RED);
                         break;
                     case 4:
-                        Button b1 = (Button)convertView;
-                        b1.setText(item);
+                        Button b1 = (Button) convertView;
+                        b1.setText(item.value);
                         b1.setBackgroundColor(Color.YELLOW);
                         break;
                     default:
@@ -137,8 +140,8 @@ public class TypeListViewActivity extends BaseActivity {
 
         @Override
         public int getItemViewType(int position) {
-            String str = strs.get(position);
-            int value = Integer.parseInt(str) % TypeCount;
+            Item item = strs.get(position);
+            int value = item.type;
             return value;
 
         }
@@ -148,5 +151,10 @@ public class TypeListViewActivity extends BaseActivity {
             return TypeCount;
         }
 
+    }
+
+    private class Item {
+        String value;
+        int type;
     }
 }
