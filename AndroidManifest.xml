@@ -31,6 +31,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".ClickAppActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".DefaultOpenActivity"
             android:label="@string/app_name" >
         </activity>

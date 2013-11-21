@@ -12,8 +12,8 @@ public class TestSurfaceViewActivity extends Activity
 	public static final Demo DEMO = new Demo();
 	static{
 		DEMO.setClassName(TestSurfaceViewActivity.class);
-        DEMO.setTitle("ServiceViewTest");
-        DEMO.setDescription("ServiceView的一个小demo。");
+        DEMO.setTitle("SurfaceViewTest");
+        DEMO.setDescription("SurfaceView的一个小demo。");
 	}
 	
     @Override  
