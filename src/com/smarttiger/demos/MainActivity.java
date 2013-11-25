@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(TypeListViewActivity.DEMO);
         demos.add(SpannableActivity.DEMO);
         demos.add(ClickAppActivity.DEMO);
+        demos.add(VolleyActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
