@@ -32,7 +32,7 @@ public class MaskDrawableActivity extends BaseActivity {
         NinePatchDrawable ninePatchDrawable = (NinePatchDrawable) getResources()
                 .getDrawable(R.drawable.test);
         maskDrawable.setDrawable(ninePatchDrawable);
-        maskDrawable.setMaskColor(Color.argb(200, 255, 0, 0));
+        maskDrawable.setMaskColor(Color.argb(20, 0, 0, 0));
         button.setBackgroundDrawable(maskDrawable);
 
         button2.setBackgroundDrawable(new MaskDrawable(getResources()
