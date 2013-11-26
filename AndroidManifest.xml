@@ -62,6 +62,10 @@
             android:name=".VolleyActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".MaskDrawableActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
