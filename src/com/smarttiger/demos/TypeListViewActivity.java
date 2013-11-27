@@ -53,25 +53,21 @@ public class TypeListViewActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            // TODO Auto-generated method stub
             return strs.size();
         }
 
         @Override
         public Object getItem(int position) {
-            // TODO Auto-generated method stub
             return strs.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            // TODO Auto-generated method stub
             return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
             Item item = strs.get(position);
             if (convertView == null) {
                 switch (getItemViewType(position)) {

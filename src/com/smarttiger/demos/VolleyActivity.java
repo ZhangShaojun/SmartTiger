@@ -19,13 +19,14 @@ import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.smarttiger.demos.bean.BitmapCache;
 import com.smarttiger.demos.bean.Demo;
 
 public class VolleyActivity extends BaseActivity {
     public static final Demo DEMO = new Demo();
     static {
         DEMO.setClassName(VolleyActivity.class);
-        DEMO.setTitle("volley 的用法");
+        DEMO.setTitle("volley的用法");
         StringBuilder sb = new StringBuilder();
         DEMO.setDescription(sb.toString());
     }
@@ -42,25 +43,20 @@ public class VolleyActivity extends BaseActivity {
         networkImageView = (NetworkImageView) findViewById(R.id.networkImageView);
         img = (ImageView) findViewById(R.id.img);
         requestQueue = Volley.newRequestQueue(this);
-        final LruCache<String, Bitmap> lruCache = new LruCache<String, Bitmap>(20);
 
-        imageCache = new ImageCache() {
-            @Override
-            public void putBitmap(String key, Bitmap value) {
-                lruCache.put(key, value);
-
-            }
-
-            @Override
-            public Bitmap getBitmap(String key) {
-                return lruCache.get(key);
-            }
-
-        };
+        imageCache = new BitmapCache();
         imageLoader = new ImageLoader(requestQueue, imageCache);
         loadImageByVolley();
         showImageByNetworkImageView();
         // getJSONByVolley();
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        loadImageByVolley();
+        showImageByNetworkImageView();
     }
 
     private void loadImageByVolley() {

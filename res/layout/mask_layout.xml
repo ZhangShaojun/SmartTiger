@@ -11,6 +11,11 @@
     </Button>
 
     <Button
+        android:id="@+id/btn1"
+        android:layout_width="200dip"
+        android:layout_height="50dip" >
+    </Button>
+    <Button
         android:id="@+id/btn2"
         android:layout_width="200dip"
         android:layout_height="50dip" >

@@ -26,6 +26,7 @@ public class MaskDrawableActivity extends BaseActivity {
 
         setContentView(R.layout.mask_layout);
         Button button = (Button) findViewById(R.id.btn);
+        Button button1 = (Button) findViewById(R.id.btn1);
         Button button2 = (Button) findViewById(R.id.btn2);
         button.setText("xxx");
         MaskDrawable maskDrawable = new MaskDrawable();
@@ -35,6 +36,7 @@ public class MaskDrawableActivity extends BaseActivity {
         maskDrawable.setMaskColor(Color.argb(20, 0, 0, 0));
         button.setBackgroundDrawable(maskDrawable);
 
+        button1.setBackgroundDrawable(new MaskDrawable(ninePatchDrawable, Color.argb(20, 0, 0, 0)));
         button2.setBackgroundDrawable(new MaskDrawable(getResources()
                 .getDrawable(R.drawable.ic_launcher), Color.argb(20, 0, 0, 0)));
 

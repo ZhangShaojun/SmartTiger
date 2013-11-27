@@ -10,7 +10,7 @@ import android.graphics.drawable.StateListDrawable;
 
 public class MaskDrawable extends StateListDrawable {
 
-    Drawable mNinePatchDrawable;
+    Drawable mDrawable;
     ColorDrawable mColorDrawable;
     int color;
     int pressed = android.R.attr.state_pressed;
@@ -38,7 +38,7 @@ public class MaskDrawable extends StateListDrawable {
     public void setBounds(int left, int top, int right, int bottom) {
         super.setBounds(left, top, right, bottom);
         mColorDrawable.setBounds(left, top, right, bottom);
-        mNinePatchDrawable.setBounds(left, top, right, bottom);
+        mDrawable.setBounds(left, top, right, bottom);
 
         System.out.println("setBounds:");
     }
@@ -62,7 +62,7 @@ public class MaskDrawable extends StateListDrawable {
     public boolean selectDrawable(int idx) {
 
         if (idx == 0) {
-            currentDrawable = mNinePatchDrawable;
+            currentDrawable = mDrawable;
         } else {
             currentDrawable = mColorDrawable;
         }
@@ -72,7 +72,7 @@ public class MaskDrawable extends StateListDrawable {
     }
 
     public void setDrawable(Drawable drawable) {
-        mNinePatchDrawable = drawable;
+        mDrawable = drawable;
         addState(defaultState, drawable);
 
     }
@@ -87,9 +87,9 @@ public class MaskDrawable extends StateListDrawable {
     public void draw(Canvas canvas) {
         // mDrawable.draw(canvas);
 
-        if (currentDrawable == mNinePatchDrawable)
+        if (currentDrawable == mDrawable)
         {
-            mNinePatchDrawable.draw(canvas);
+            mDrawable.draw(canvas);
         } else {
             drawClick(canvas);
         }
@@ -97,9 +97,9 @@ public class MaskDrawable extends StateListDrawable {
     }
 
     private void drawClick(Canvas canvas) {
-        mNinePatchDrawable.draw(canvas);
-        mNinePatchDrawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-        mNinePatchDrawable.draw(canvas);
-        mNinePatchDrawable.setColorFilter(null);
+        mDrawable.draw(canvas);
+        mDrawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        mDrawable.draw(canvas);
+        mDrawable.setColorFilter(null);
     }
 }
