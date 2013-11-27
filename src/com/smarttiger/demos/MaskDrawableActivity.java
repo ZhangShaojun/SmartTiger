@@ -31,7 +31,7 @@ public class MaskDrawableActivity extends BaseActivity {
         button.setText("xxx");
         MaskDrawable maskDrawable = new MaskDrawable();
         NinePatchDrawable ninePatchDrawable = (NinePatchDrawable) getResources()
-                .getDrawable(R.drawable.test);
+                .getDrawable(R.drawable.bg);
         maskDrawable.setDrawable(ninePatchDrawable);
         maskDrawable.setMaskColor(Color.argb(20, 0, 0, 0));
         button.setBackgroundDrawable(maskDrawable);
