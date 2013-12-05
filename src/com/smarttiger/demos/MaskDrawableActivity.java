@@ -2,6 +2,7 @@
 package com.smarttiger.demos;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Bundle;
 import android.widget.Button;
@@ -30,13 +31,13 @@ public class MaskDrawableActivity extends BaseActivity {
         Button button2 = (Button) findViewById(R.id.btn2);
         button.setText("xxx");
         MaskDrawable maskDrawable = new MaskDrawable();
-        NinePatchDrawable ninePatchDrawable = (NinePatchDrawable) getResources()
-                .getDrawable(R.drawable.bg);
+        Drawable ninePatchDrawable =  getResources()
+                .getDrawable(R.drawable.bg_1);
         maskDrawable.setDrawable(ninePatchDrawable);
         maskDrawable.setMaskColor(Color.argb(20, 0, 0, 0));
         button.setBackgroundDrawable(maskDrawable);
 
-        button1.setBackgroundDrawable(new MaskDrawable(ninePatchDrawable, Color.argb(20, 0, 0, 0)));
+        button1.setBackgroundDrawable(new MaskDrawable(ninePatchDrawable, Color.argb(20, 255, 0, 0)));
         button2.setBackgroundDrawable(new MaskDrawable(getResources()
                 .getDrawable(R.drawable.ic_launcher), Color.argb(20, 0, 0, 0)));
 

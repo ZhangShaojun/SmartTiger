@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.smarttiger.demos.bean.Demo;
+import com.smarttiger.demos.wxapi.WXEntryActivity;
 
 public class MainActivity extends Activity implements OnItemClickListener {
 
@@ -41,6 +42,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(VolleyActivity.DEMO);
         demos.add(MaskDrawableActivity.DEMO);
         demos.add(RouKongDrawableActivity.DEMO);
+        demos.add(WXEntryActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <View
+        android:id="@+id/share_translate_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="#99000000" >
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff4f4f4"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:background="#fffa8a13" >
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip" >
+
+            <TextView
+                style="@style/share_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share_to_frends" >
+            </TextView>
+
+            <GridView
+                android:id="@+id/share_to_frends_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip" >
+            </GridView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="@drawable/share_line" >
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="42.5dip"
+            android:paddingTop="15dip" >
+
+            <TextView
+                style="@style/share_title_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save_to" >
+            </TextView>
+
+            <GridView
+                android:id="@+id/save_to_grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip" >
+            </GridView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

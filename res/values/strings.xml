@@ -4,5 +4,17 @@
     <string name="app_name">SmartTiger</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!张少俊!</string>
+    <string name="share_suc">分享成功!</string>
+    <string name="share_fail">分享失败!</string>
+    <string name="share_cancel">分享取消!</string>
+    <string name="share_exceptoin">分享出现异常!</string>
+    <string name="share_to_frends">分享给朋友</string>
+    <string name="save_to">保存到</string>
+    
+    <string name="share_wechat_send_to_chat">Send to Chat</string>
+    <string name="share_wechat_send_to_moments">Send to Moments</string>
+    <string name="share_sina_weibo">Weibo</string>
+    
+    
 
 </resources>
