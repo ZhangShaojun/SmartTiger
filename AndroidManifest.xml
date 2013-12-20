@@ -70,33 +70,8 @@
             android:name=".RouKongDrawableActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity
-            android:name="com.smarttiger.demos.share.SinaShareActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ShareActivity"
-            android:exported="true"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.smarttiger.demos.wxapi.WXEntryActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="sdksample" />
-            </intent-filter>
-        </activity>
+       
+      
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
