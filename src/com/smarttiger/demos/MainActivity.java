@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -41,6 +42,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(VolleyActivity.DEMO);
         demos.add(MaskDrawableActivity.DEMO);
         demos.add(RouKongDrawableActivity.DEMO);
+        demos.add(OverScrollActivity.DEMO);
+        demos.add(DeskTopActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
@@ -84,9 +87,23 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    	
-        Demo demo = demos.get(position);
-        Intent intent = new Intent(MainActivity.this, demo.getClassName());
-        startActivity(intent);
+
+         Demo demo = demos.get(position);
+         Intent intent = new Intent(MainActivity.this, demo.getClassName());
+         startActivity(intent);
+
+
+    }
+
+    private void ttt() {
+        mListView.setDrawingCacheEnabled(true);
+        Bitmap b = mListView.getDrawingCache();
+        if (b != null && !b.isRecycled()) {
+            b.recycle();
+        } else {
+            System.out
+                    .println("是recyled!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+        mListView.setDrawingCacheEnabled(false);
     }
 }
