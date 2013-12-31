@@ -45,9 +45,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(OverScrollActivity.DEMO);
         demos.add(DeskTopActivity.DEMO);
         demos.add(HideMxSmartBarActivity.DEMO);
+        demos.add(FitInsideCenterActivity.DEMO);
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);
+        System.out.println("MainActivity.onCreate");
     }
 
     private class MyAdapter extends BaseAdapter {
