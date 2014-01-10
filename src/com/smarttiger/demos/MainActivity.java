@@ -29,6 +29,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         mListView = (ListView) findViewById(R.id.list);
+        demos.add(SuperItemsActivity.DEMO);
         demos.add(DensityActivity.DEMO);
         demos.add(DrawableSizeActivity.DEMO);
         demos.add(DefaultOpenActivity.DEMO);
@@ -46,6 +47,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
         demos.add(DeskTopActivity.DEMO);
         demos.add(HideMxSmartBarActivity.DEMO);
         demos.add(FitInsideCenterActivity.DEMO);
+        demos.add(FitInsideCenterActivity.DEMO);
+       
         MyAdapter myAdapter = new MyAdapter();
         mListView.setAdapter(myAdapter);
         mListView.setOnItemClickListener(this);

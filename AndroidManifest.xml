@@ -87,6 +87,10 @@
             android:name=".FitInsideCenterActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".SuperItemsActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
