@@ -31,7 +31,7 @@ public class SuperItemsActivity extends BaseActivity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.muti_layout);
+        setContentView(R.layout.simple_muti_layout);
 
         mMutiLayout = (SimpleMutiWindowLayout) findViewById(R.id.muti);
         mMutiLayout.setOnSampleMutiWindowLayoutListener(this);
@@ -73,5 +73,10 @@ public class SuperItemsActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onRemoveAllAniStart() {
 
+    }
+
+    @Override
+    public void onItemSelect() {
+        
     }
 }

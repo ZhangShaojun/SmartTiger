@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewConfiguration;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.smarttiger.demos.R;
 
 public class SimpleMutiWindowLayout extends LinearLayout implements
@@ -51,6 +53,8 @@ public class SimpleMutiWindowLayout extends LinearLayout implements
      * 是否正在删除所有子view
      */
     private boolean mAllRemoveing = false;
+    
+  
 
     public SimpleMutiWindowLayout(Context context) {
         super(context);
@@ -73,13 +77,60 @@ public class SimpleMutiWindowLayout extends LinearLayout implements
     }
 
     public void addItem(String title) {
-        View item = mInflater.inflate(R.layout.muti_item, null);
+        View item = mInflater.inflate(R.layout.simple_muti_item, null);
         View close = item.findViewById(R.id.close);
         close.setOnClickListener(this);
         close.setTag(item);
         TextView titleText = (TextView) item.findViewById(R.id.title);
         titleText.setText(title);
+        item.setOnClickListener(this);
         addView(item);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mLastTouchX = ev.getX();
+                mLastTouchY = ev.getY();
+                mTouchedChild = findTouchChildView(mLastTouchY);
+                // 如果它正在走动画就无视这个事件
+                if (mTouchedChild != null && mTouchedChild.getTranslationX() != 0) {
+                    mTouchedChild = null;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (mTouchState != TOUCH_STATE_DRAG_ITEM) {
+                    return checkDragItem(ev);
+                }
+                return false;
+            default:
+                break;
+        }
+        return super.onInterceptHoverEvent(ev);
+    }
+
+    private boolean checkDragItem(MotionEvent ev) {
+
+        float x = ev.getX();
+        float y = ev.getY();
+        float deleX = x - mLastTouchX;
+        float deleY = y - mLastTouchY;
+        float distance = deleX * deleX + deleY * deleY;
+        if (distance > ViewConfiguration.getTouchSlop()) {
+            if (Math.abs(deleX) > Math.abs(deleY) * X_Y && mTouchedChild != null) {
+                requestDisallowInterceptTouchEvent(true);
+                mTouchState = TOUCH_STATE_DRAG_ITEM;
+                setChildTranslatX(deleX);
+                return true;
+            } else {
+                requestDisallowInterceptTouchEvent(false);
+                mTouchState = TOUCH_STATE_ALLOW_SCROLL;
+                return false;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -88,37 +139,16 @@ public class SimpleMutiWindowLayout extends LinearLayout implements
         int action = event.getAction();
         float y = event.getY();
         switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                mLastTouchX = event.getX();
-                mLastTouchY = event.getY();
-                mTouchedChild = findTouchChildView(mLastTouchY);
-                // 如果它正在走动画就无视这个事件
-                if (mTouchedChild == null) {
-                    return false;
-                } else if (mTouchedChild.getTranslationX() != 0) {
-                    mTouchedChild = null;
-                    return false;
-                }
-
-                return true;
             case MotionEvent.ACTION_MOVE:
                 float x = event.getX();
                 float deleX = x - mLastTouchX;
-                float deleY = y - mLastTouchY;
-                if (mTouchState == TOUCH_STATE_DRAG_ITEM) {
+                if (mTouchState != TOUCH_STATE_DRAG_ITEM) {
+                    return checkDragItem(event);
+                } else if (mTouchState == TOUCH_STATE_DRAG_ITEM) {
                     setChildTranslatX(deleX);
-                } else {
-                    if (Math.abs(deleX) > Math.abs(deleY) * X_Y && mTouchedChild != null) {
-                        requestDisallowInterceptTouchEvent(true);
-                        mTouchState = TOUCH_STATE_DRAG_ITEM;
-                        setChildTranslatX(deleX);
-                    } else {
-                        requestDisallowInterceptTouchEvent(false);
-                        mTouchState = TOUCH_STATE_ALLOW_SCROLL;
-                        return super.onTouchEvent(event);
-                    }
+                    return true;
                 }
-                return true;
+                return super.onTouchEvent(event);
             case MotionEvent.ACTION_CANCEL:
                 if (mTouchState == TOUCH_STATE_DRAG_ITEM) {
                     startRemoveOrResume();
@@ -288,8 +318,14 @@ public class SimpleMutiWindowLayout extends LinearLayout implements
 
     @Override
     public void onClick(View v) {
-        v.setClickable(false);
-        closeItem((View) v.getTag());
+        if (v.getId() == R.id.close) {
+            v.setClickable(false);
+            closeItem((View) v.getTag());
+        } else if (v.getId() == R.id.title) {
+            if (mOnSampleMutiWindowLayoutListener != null) {
+                mOnSampleMutiWindowLayoutListener.onItemSelect();
+            }
+        }
     }
 
     public OnSampleMutiWindowLayoutListener getOnSampleMutiWindowLayoutListener() {
@@ -305,6 +341,8 @@ public class SimpleMutiWindowLayout extends LinearLayout implements
         public void onRemoveAllAniStart();
 
         public void onRemoveAllAniEnd();
+
+        public void onItemSelect();
     }
 
 }
