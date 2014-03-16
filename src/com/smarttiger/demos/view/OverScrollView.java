@@ -2,12 +2,13 @@
 package com.smarttiger.demos.view;
 
 import android.content.Context;
-import android.os.StrictMode;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.OverScroller;
 
@@ -22,6 +23,7 @@ public class OverScrollView extends FrameLayout {
     private int mMinimumVelocity;
     private int mMaximumVelocity;
     private int mActivePointerId = INVALID_POINTER;
+    private ViewGroup child;
 
     /**
      * Sentinel value for no current active pointer. Used by
@@ -58,6 +60,8 @@ public class OverScrollView extends FrameLayout {
             case MotionEvent.ACTION_DOWN:
                 mLastTouchY = event.getY();
                 mActivePointerId = event.getPointerId(0);
+                mOverScroller.abortAnimation();
+                mVelocityTracker.clear();
                 break;
             case MotionEvent.ACTION_MOVE:
                 int index = event.findPointerIndex(mActivePointerId);
@@ -66,7 +70,7 @@ public class OverScrollView extends FrameLayout {
 
                 int detaY = (int) (mLastTouchY - y);
                 mLastTouchY = y;
-                scrollBy(0, detaY);
+                childScrollBy(detaY);
                 mVelocityTracker.addMovement(event);
                 break;
             case MotionEvent.ACTION_POINTER_DOWN: {
@@ -79,7 +83,9 @@ public class OverScrollView extends FrameLayout {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
+
                 mActivePointerId = INVALID_POINTER;
+                checkOverScroll();
                 break;
             case MotionEvent.ACTION_POINTER_UP:
                 onSecondaryPointerUp(event);
@@ -88,6 +94,73 @@ public class OverScrollView extends FrameLayout {
 
         }
         return true;
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        child = (ViewGroup) getChildAt(0);
+
+    }
+
+    private void childScrollBy(int y) {
+        child.scrollBy(0, y);
+
+    }
+
+    private void childScrollTo(int y) {
+        child.scrollTo(0, y);
+
+    }
+
+    private int getChildScrollY() {
+        return child.getScrollY();
+
+    }
+
+    private int getChildHeight() {
+        int count = child.getChildCount();
+        if (count > 0)
+        {
+            return child.getChildAt(count - 1).getBottom();
+        }
+        return child.getMeasuredHeight();
+    }
+
+    private int getScrollDistance() {
+        int childHeight = getChildHeight();
+        int scrollHeight = childHeight - getMeasuredHeight();
+        log("getScrollDistance" + scrollHeight);
+        return scrollHeight;
+    }
+
+    private void postInvalidateChild() {
+        child.postInvalidate();
+
+    }
+
+    private void checkOverScroll() {
+
+        int startY = getChildScrollY();
+
+        int yV = (int) mVelocityTracker.getYVelocity();
+
+        if (Math.abs(yV) > mMinimumVelocity) {
+            log("fling");
+            mOverScroller.fling(0, startY, 0, -yV, 0, 0, 0, getScrollDistance(), 0, 200);
+            postInvalidate();
+        } else {
+            int childScroll = getChildScrollY();
+            if (childScroll < 0) {
+                mOverScroller.startScroll(0, childScroll, 0, -childScroll);
+                invalidate();
+            } else if (childScroll > getScrollDistance()) {
+                mOverScroller.startScroll(0, childScroll, 0, getScrollDistance() - childScroll);
+                invalidate();
+            }
+
+        }
+        Log.d(TAG, "checkOverScroll:" + yV);
     }
 
     private void onSecondaryPointerUp(MotionEvent ev) {
@@ -114,4 +187,21 @@ public class OverScrollView extends FrameLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
+    @Override
+    public void computeScroll() {
+        if (mOverScroller.computeScrollOffset()) {
+
+            int y = mOverScroller.getCurrY();
+            childScrollTo(y);
+            log("scroll:" + y);
+            postInvalidateChild();
+        } else {
+
+        }
+    }
+
+    private void log(String str) {
+
+        Log.d(TAG, str);
+    }
 }
