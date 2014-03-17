@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.smarttiger.demos.view.OverScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/over_scroll"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:id="@+id/parent"
+        android:id="@+id/bg_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/weather_ani_duoyun" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="搜索" />
+
+            <TextView
+                android:id="@+id/search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dip"
+                android:paddingTop="150dip"
+                android:text="天气" />
+        </FrameLayout>
     </LinearLayout>
 
-</com.smarttiger.demos.view.OverScrollView>
+    <com.smarttiger.demos.view.OverScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/over_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/search_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="100dip"
+                    android:paddingTop="100dip"
+                    android:text="" >
+                </TextView>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="360dip"
+                android:layout_height="1280dip"
+                android:background="@drawable/content" >
+            </ImageView>
+        </LinearLayout>
+    </com.smarttiger.demos.view.OverScrollView>
+
+</FrameLayout>

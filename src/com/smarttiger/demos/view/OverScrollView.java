@@ -24,6 +24,9 @@ public class OverScrollView extends FrameLayout {
     private int mMaximumVelocity;
     private int mActivePointerId = INVALID_POINTER;
     private ViewGroup child;
+    public static final int maxOverScrollDistance = 100;
+    public static final int scrollTo = 300;
+    public static final int scrollTo_1 = scrollTo + 140;
 
     /**
      * Sentinel value for no current active pointer. Used by
@@ -104,11 +107,21 @@ public class OverScrollView extends FrameLayout {
     }
 
     private void childScrollBy(int y) {
-        child.scrollBy(0, y);
+        int scrollY = child.getScrollY();
+        int target = scrollY + y;
+        if (target < -maxOverScrollDistance) {
+            child.scrollTo(0, -maxOverScrollDistance);
+
+        } else if (target > getScrollDistance() + maxOverScrollDistance) {
+            child.scrollTo(0, getScrollDistance() + maxOverScrollDistance);
+        } else {
+            child.scrollBy(0, y);
+        }
 
     }
 
     private void childScrollTo(int y) {
+
         child.scrollTo(0, y);
 
     }
@@ -145,18 +158,42 @@ public class OverScrollView extends FrameLayout {
 
         int yV = (int) mVelocityTracker.getYVelocity();
 
+        if (startY > 0 && startY < scrollTo) {
+            int childScroll = getChildScrollY();
+            log("yV" + yV + "childScroll" + childScroll);
+            if (yV > 0) {
+                mOverScroller.startScroll(0, childScroll, 0, -childScroll);
+            } else {
+                mOverScroller.startScroll(0, childScroll, 0, scrollTo - childScroll);
+
+            }
+            postInvalidate();
+            return;
+        } else if (startY > scrollTo && startY < scrollTo_1) {
+            int childScroll = getChildScrollY();
+            log("yV" + yV + "childScroll" + childScroll);
+            if (yV > 0) {
+                mOverScroller.startScroll(0, childScroll, 0, -childScroll + scrollTo);
+            } else {
+                mOverScroller.startScroll(0, childScroll, 0, scrollTo_1 - childScroll);
+
+            }
+            postInvalidate();
+            return;
+        }
         if (Math.abs(yV) > mMinimumVelocity) {
             log("fling");
-            mOverScroller.fling(0, startY, 0, -yV, 0, 0, 0, getScrollDistance(), 0, 200);
+            mOverScroller.fling(0, startY, 0, -yV, 0, 0, 0, getScrollDistance(), 0,
+                    maxOverScrollDistance);
             postInvalidate();
         } else {
             int childScroll = getChildScrollY();
             if (childScroll < 0) {
                 mOverScroller.startScroll(0, childScroll, 0, -childScroll);
-                invalidate();
+                postInvalidate();
             } else if (childScroll > getScrollDistance()) {
                 mOverScroller.startScroll(0, childScroll, 0, getScrollDistance() - childScroll);
-                invalidate();
+                postInvalidate();
             }
 
         }
@@ -192,8 +229,10 @@ public class OverScrollView extends FrameLayout {
         if (mOverScroller.computeScrollOffset()) {
 
             int y = mOverScroller.getCurrY();
+
             childScrollTo(y);
             log("scroll:" + y);
+            log("scroll-Velocity:" + mOverScroller.getCurrVelocity());
             postInvalidateChild();
         } else {
 

@@ -21,11 +21,6 @@ public class OverScrollActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.over_scroll);
         LinearLayout layout = (LinearLayout) findViewById(R.id.parent);
-        for (int i = 0; i < 100; i++) {
-            TextView t = new TextView(this);
-            t.setText("第" + i + "个");
-            layout.addView(t, 400, 100);
-        }
     }
 
 }
