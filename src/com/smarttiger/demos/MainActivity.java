@@ -29,7 +29,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         mListView = (ListView) findViewById(R.id.list);
+        demos.add(SwipeListViewActivity.DEMO);
         demos.add(VisibleAnimationActivity.DEMO);
+        demos.add(TraceViewActivity.DEMO);
         demos.add(SuperItemsActivity.DEMO);
         demos.add(DensityActivity.DEMO);
         demos.add(DrawableSizeActivity.DEMO);
